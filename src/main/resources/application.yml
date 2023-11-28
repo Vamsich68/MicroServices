@@ -1,0 +1,9 @@
+service:
+  port: 8090
+limits-service:
+  minimum: 10
+  maximum: 100
+spring:
+  cloud:
+    config:
+      enabled: false
