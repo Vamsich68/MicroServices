@@ -16,6 +16,5 @@ public class apiGatewayConfiguration {
                 .route(p -> p.path("/currency-conversion/**")
                         .uri("lb://currency-conversion"))
                 .build();
-
     }
 }
