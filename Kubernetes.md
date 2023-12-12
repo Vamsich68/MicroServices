@@ -1,160 +1,33 @@
-
-docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
+#To run image
+1. docker run -p 8080:8080 in28min/hello-world-rest-api:0.0.1.RELEASE
 
 #Create instance
-kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+
+2. kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
 
 #To run instances
-kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 
-kubectl scale deployment hello-world-rest-api --replicas=3
+3. kubectl expose deployment {deployment name} --type=LoadBalancer --port=8080
 
-kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
+4. kubectl scale deployment {deployment name} --replicas=3
 
-kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
+5. kubectl delete pod {pod id}
 
-kubectl edit deployment hello-world-rest-api #minReadySeconds: 15
+#To get events
+6. Kubectl get events
+#can use singular or plural ex: pod or pods both will work
+7. Kubectl ged pods
 
-kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+#To show detailed info of particular pod
 
-gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-a --project solid-course-258105
+9. kubectl describe pod {pod id}
+10. Kubectl ged relicaset // or rs
+11. kubectl get pods -o wide
+12. kubectl delete pods {pod id}
+#Creates no.of.instances
+13. kubectl scale deployment {cluster name} --replicas=3
+14. kubectl explain replicaset
+15. kubectl get events --sort-by= .metadata.creationTimestamp
 
-kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
 
-kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
-
-kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
-
-kubectl get events --sort-by=.metadata.creationTimestamp
-
-kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
-
-kubectl get events --sort-by=.metadata.creationTimestamp
-kubectl get componentstatuses
-kubectl get pods --all-namespaces
-
-kubectl get events
-kubectl get pods
-kubectl get replicaset
-kubectl get deployment
-kubectl get service
-
-kubectl get pods -o wide
-
-kubectl explain pods
-kubectl get pods -o wide
-
-kubectl describe pod hello-world-rest-api-58ff5dd898-9trh2
-
-kubectl get replicasets
-kubectl get replicaset
-
-kubectl scale deployment hello-world-rest-api --replicas=3
-kubectl get pods
-kubectl get replicaset
-kubectl get events
-kubectl get events --sort.by=.metadata.creationTimestamp
-
-kubectl get rs
-kubectl get rs -o wide
-kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
-kubectl get rs -o wide
-kubectl get pods
-kubectl describe pod hello-world-rest-api-85995ddd5c-msjsm
-kubectl get events --sort-by=.metadata.creationTimestamp
-
-kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
-
-kubectl get events --sort-by=.metadata.creationTimestamp
-
-kubectl get pods -o wide
-
-kubectl delete pod hello-world-rest-api-67c79fd44f-n6c7l
-
-kubectl get pods -o wide
-
-kubectl delete pod hello-world-rest-api-67c79fd44f-8bhdt
-
-
-gcloud container clusters get-credentials in28minutes-cluster --zone us-central1-c --project solid-course-258105
-
-docker login
-
-docker push in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
-
-docker push in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
-
-kubectl create deployment currency-exchange --image=in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
-
-kubectl expose deployment currency-exchange --type=LoadBalancer --port=8000
-
-kubectl get svc
-
-kubectl get services
-
-kubectl get pods
-
-kubectl get po
-
-kubectl get replicaset
-
-kubectl get rs
-
-kubectl get all
-
-kubectl create deployment currency-conversion --image=in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
-
-kubectl expose deployment currency-conversion --type=LoadBalancer --port=8100
-
-kubectl get svc --watch
-
-kubectl get deployments
-
-kubectl get deployment currency-exchange -o yaml >> deployment.yaml
-
-kubectl get service currency-exchange -o yaml >> service.yaml 
-
-kubectl diff -f deployment.yaml
-
-kubectl apply -f deployment.yaml
-
-kubectl delete all -l app=currency-exchange
-
-kubectl delete all -l app=currency-conversion
-
-kubectl rollout history deployment currency-conversion
-
-kubectl rollout history deployment currency-exchange
-
-kubectl rollout undo deployment currency-exchange --to-revision=1
-
-
-kubectl logs currency-exchange-9fc6f979b-2gmn8
-
-kubectl logs -f currency-exchange-9fc6f979b-2gmn8 
-
-kubectl autoscale deployment currency-exchange --min=1 --max=3 --cpu-percent=5 
-
-kubectl get hpa
-
-kubectl top pod
-
-kubectl top nodes
-
-kubectl get hpa
-
-kubectl delete hpa currency-exchange
-
-kubectl create configmap currency-conversion --from-literal=CURRENCY_EXCHANGE_URI=http://currency-exchange
-
-kubectl get configmap
-
-kubectl get configmap currency-conversion -o yaml >> configmap.yaml
-
-watch -n 0.1 curl http://34.66.241.150:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
-
-
-docker push in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT
-
-docker push in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT
 
